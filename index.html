@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -237,10 +238,10 @@
     <header>
       <div class="kicker">Return Championship</div>
       <h1><span class="taku">TAKU</span> はいつ帰る<span class="vs">ムキムキ6人衆から予想を選べ</span></h1>
-      <p class="subline">コインを賭けろ。<b>全員、腕相撲はカンスト級。</b></p>
+      <p class="subline">架空のTAKUが復帰時期ごとに6人のファイターに。誰の時期を推すか選んでコインを賭けろ。<b>全員、腕相撲はカンスト級。</b></p>
       <div class="hud">
         <div class="hchip"><div class="k">Your Balance</div><div class="v num"><span class="c">◎</span> <span id="balance">1,000</span></div></div>
-        <div class="hchip pool"><div class="k">Total Pool</div><div class="v num"><span id="pool">4,820</span></div></div>
+        <div class="hchip pool"><div class="k">Total Pool</div><div class="v num"><span id="pool">0</span></div></div>
       </div>
     </header>
 
@@ -412,7 +413,11 @@ const options = [
   {id:"y15", label:"1年半", stub:"単穴", odds:4.5},
   {id:"y2",  label:"2年",   stub:"大穴", odds:7.8},
   {id:"y25", label:"2年半", stub:"超穴", odds:12.0},
-
+].map(o=>Object.assign(o, F[o.id], {
+  bettors:{
+    m1:[], m6:[], y1:[], y15:[], y2:[], y25:[],
+  }[o.id]
+}));
 options.forEach(o=>o.people=o.bettors.length);
 const total = o=>o.bettors.reduce((s,b)=>s+b.a,0);
 
